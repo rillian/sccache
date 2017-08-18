@@ -13,6 +13,9 @@ keywords = ["ccache"]
 travis-ci = { repository = "mozilla/sccache" }
 appveyor = { repository = "mozilla/sccache" }
 
+[package.metadata.release]
+sign-commit = true
+
 [dependencies]
 app_dirs = "1.1.1"
 base64 = "0.5.2"
