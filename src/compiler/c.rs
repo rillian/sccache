@@ -382,4 +382,28 @@ mod test {
             assert_neq!(h2, h3);
         }
     }
+
+    #[test]
+    fn test_language_from_common_filename_extensions() {
+        let valid = vec!["hello.c",
+                         "branch.cc",
+                         "hash_map.cpp",
+                         "link-test.C"];
+        for name in valid {
+            let path = Path::new(name);
+            assert!(Language::from_file_name(path).is_some());
+        }
+        let invalid = vec!["foo",
+                           "README.md",
+                           "MSYS.DLL",
+                           "cl.exe",
+                           "lapack.f",
+                           "quux.o",
+                           "opt_impl.S"];
+        for name in invalid {
+            let path = Path::new(name);
+            assert!(Language::from_file_name(path).is_none());
+        }
+    }
+
 }
